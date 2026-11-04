@@ -1,0 +1,19 @@
+{
+  "buildCommand": "vite build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/static-app/(.*)",
+      "destination": "/static-app/$1"
+    },
+    {
+      "source": "/((?!api|static-app).*)*",
+      "destination": "/index.html"
+    }
+  ]
+}

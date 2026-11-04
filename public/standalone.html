@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Renk Analizörü - Statik HTML & JavaScript</title>
+  <meta name="description" content="4 kelime arasından hangilerinin renk olduğunu ve renk olmayanı bulan sade uygulama.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    code, pre { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen py-10 px-4">
+  <div class="max-w-3xl mx-auto space-y-6">
+    
+    <!-- Basit Başlık -->
+    <header class="text-center space-y-2">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">
+        Renk Analizörü
+      </h1>
+      <p class="text-slate-400 text-sm max-w-md mx-auto">
+        Yazdığınız 4 kelime arasından hangilerinin renk ismi olduğunu ve hangisinin renk olmadığını tespit eder.
+      </p>
+    </header>
+
+    <!-- Giriş Formu -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">
+          Analiz Edilecek 4 Kelime
+        </span>
+        <button id="clearBtn" class="text-xs text-slate-400 hover:text-white transition">Temizle</button>
+      </div>
+
+      <!-- 4 Temiz Kutu (Örneksiz, boş başlangıç) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-400 mb-1">1. Kelime</label>
+          <input id="word0" type="text" placeholder="Kelime 1" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition">
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-400 mb-1">2. Kelime</label>
+          <input id="word1" type="text" placeholder="Kelime 2" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition">
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-400 mb-1">3. Kelime</label>
+          <input id="word2" type="text" placeholder="Kelime 3" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition">
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-400 mb-1">4. Kelime</label>
+          <input id="word3" type="text" placeholder="Kelime 4" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition">
+        </div>
+      </div>
+
+      <div class="pt-2">
+        <button id="analyzeBtn" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-6 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+          <span>Analiz Et</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sonuç Kartı -->
+    <div id="resultsCard" class="hidden space-y-4">
+      
+      <!-- Ana Sonuç Özeti -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+        
+        <!-- Renk Olmayan Kelime -->
+        <div id="outlierContainer" class="p-4 rounded-xl bg-rose-950/30 border border-rose-900/50 space-y-1">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-rose-400 block">
+            Aralarında Renk İsmi Olmayan:
+          </span>
+          <div id="outlierText" class="text-2xl font-extrabold text-white"></div>
+        </div>
+
+        <!-- Renk Olan Kelimeler -->
+        <div class="space-y-2">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block">
+            Renk İsmi Olan Kelimeler:
+          </span>
+          <div id="colorChips" class="flex flex-wrap gap-2"></div>
+        </div>
+
+        <!-- Açıklama -->
+        <p id="explanationText" class="text-xs sm:text-sm text-slate-300 leading-relaxed pt-2 border-t border-slate-800"></p>
+      </div>
+
+      <!-- JSON Çıktısı -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400">JSON Çıktısı</span>
+          <div class="flex items-center gap-2">
+            <button id="copyJsonBtn" class="text-xs px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition">
+              Kopyala
+            </button>
+            <button id="downloadJsonBtn" class="text-xs px-3 py-1 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition">
+              JSON İndir
+            </button>
+          </div>
+        </div>
+        <pre id="jsonViewer" class="bg-slate-950 p-4 rounded-xl text-xs text-emerald-400 overflow-x-auto max-h-60 border border-slate-800"></pre>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    const COLOR_DB = {
+      "kırmızı": { hex: "#E53E3E" },
+      "al": { hex: "#DC2626" },
+      "mavi": { hex: "#3182CE" },
+      "sarı": { hex: "#ECC94B" },
+      "yeşil": { hex: "#38A169" },
+      "siyah": { hex: "#1A202C" },
+      "kara": { hex: "#0F172A" },
+      "beyaz": { hex: "#F8FAFC" },
+      "ak": { hex: "#FFFFFF" },
+      "mor": { hex: "#805AD5" },
+      "turuncu": { hex: "#DD6B20" },
+      "turkuaz": { hex: "#319795" },
+      "pembe": { hex: "#ED64A6" },
+      "kahverengi": { hex: "#7B341E" },
+      "gri": { hex: "#718096" },
+      "lacivert": { hex: "#1E3A8A" },
+      "bordo": { hex: "#831843" },
+      "eflatun": { hex: "#9333EA" },
+      "lila": { hex: "#C084FC" },
+      "bej": { hex: "#E2E8F0" },
+      "haki": { hex: "#4D7C0F" },
+      "kızıl": { hex: "#B91C1C" },
+      "amber": { hex: "#D97706" },
+      "fuşya": { hex: "#C026D3" },
+      "vişneçürüğü": { hex: "#4C0519" },
+      "yavruağzı": { hex: "#FB7185" },
+      "camgöbeği": { hex: "#06B6D4" },
+      "somon": { hex: "#FB923C" },
+      "erguvan": { hex: "#701A75" },
+      "zümrüt": { hex: "#059669" },
+      "safir": { hex: "#1D4ED8" },
+      "yakut": { hex: "#9F1239" },
+      "mercan": { hex: "#F43F5E" },
+      "hardal": { hex: "#CA8A04" },
+      "antrasit": { hex: "#334155" },
+      "altın": { hex: "#EAB308" },
+      "gümüş": { hex: "#CBD5E1" }
+    };
+
+    let currentAnalysis = null;
+
+    function clean(str) {
+      return (str || '').trim().replace(/I/g, 'ı').replace(/İ/g, 'i').toLowerCase();
+    }
+
+    function analyze() {
+      const words = [
+        clean(document.getElementById('word0').value),
+        clean(document.getElementById('word1').value),
+        clean(document.getElementById('word2').value),
+        clean(document.getElementById('word3').value)
+      ];
+
+      if (words.some(w => !w)) {
+        alert("Lütfen 4 kelimenin tümünü yazınız.");
+        return;
+      }
+
+      const colors = [];
+      const nonColors = [];
+
+      words.forEach(w => {
+        if (COLOR_DB[w]) {
+          colors.push(w);
+        } else {
+          nonColors.push(w);
+        }
+      });
+
+      const outlier = nonColors[0] || null;
+      let explanation = "";
+
+      if (outlier) {
+        explanation = `"${outlier}" bir renk ismi değildir. Renk olan kelimeler: ${colors.join(', ')}.`;
+      } else {
+        explanation = "Girdiğiniz 4 kelimenin tümü renk ismidir.";
+      }
+
+      currentAnalysis = {
+        timestamp: new Date().toISOString(),
+        girilenKelimeler: words,
+        renkIsimleri: colors,
+        renkOlmayanlar: nonColors,
+        aralarindakiRenkOlmayan: outlier,
+        aciklama: explanation
+      };
+
+      // UI Güncelle
+      const card = document.getElementById('resultsCard');
+      card.classList.remove('hidden');
+
+      const outlierContainer = document.getElementById('outlierContainer');
+      const outlierText = document.getElementById('outlierText');
+
+      if (outlier) {
+        outlierContainer.className = "p-4 rounded-xl bg-rose-950/30 border border-rose-900/50 space-y-1";
+        outlierText.innerHTML = `<span class="px-3 py-0.5 rounded-lg bg-rose-600 text-white">${outlier}</span>`;
+      } else {
+        outlierContainer.className = "p-4 rounded-xl bg-emerald-950/30 border border-emerald-900/50 space-y-1";
+        outlierText.innerHTML = `<span class="text-emerald-400 text-lg font-bold">Renk dışı kelime yok (tümü renk)</span>`;
+      }
+
+      const chips = document.getElementById('colorChips');
+      chips.innerHTML = '';
+      if (colors.length > 0) {
+        colors.forEach(c => {
+          const hex = COLOR_DB[c]?.hex || '#6366f1';
+          const div = document.createElement('div');
+          div.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-sm font-semibold text-white";
+          div.innerHTML = `<span class="w-3.5 h-3.5 rounded-full border border-white/20 shrink-0" style="background-color: ${hex}"></span><span class="capitalize">${c}</span><span class="text-[10px] text-emerald-400 font-bold">✓ Renk</span>`;
+          chips.appendChild(div);
+        });
+      } else {
+        chips.innerHTML = '<span class="text-xs text-slate-500 italic">Hiçbiri renk ismi değil.</span>';
+      }
+
+      document.getElementById('explanationText').textContent = explanation;
+      document.getElementById('jsonViewer').textContent = JSON.stringify(currentAnalysis, null, 2);
+    }
+
+    document.getElementById('analyzeBtn').onclick = analyze;
+    document.getElementById('clearBtn').onclick = () => {
+      for(let i=0; i<4; i++) document.getElementById(`word${i}`).value = '';
+      document.getElementById('resultsCard').classList.add('hidden');
+    };
+
+    document.getElementById('copyJsonBtn').onclick = () => {
+      if (!currentAnalysis) return;
+      navigator.clipboard.writeText(JSON.stringify(currentAnalysis, null, 2)).then(() => {
+        alert("JSON kopyalandı!");
+      });
+    };
+
+    document.getElementById('downloadJsonBtn').onclick = () => {
+      if (!currentAnalysis) return;
+      const blob = new Blob([JSON.stringify(currentAnalysis, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `renk-analizi-${Date.now()}.json`;
+      a.click();
+    };
+  </script>
+</body>
+</html>

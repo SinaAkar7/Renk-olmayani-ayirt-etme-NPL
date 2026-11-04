@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Renk Analizörü - Statik Web Uygulaması</title>
+  <meta name="description" content="4 kelime arasından hangilerinin renk olduğunu ve renk olmayanı bulan sade uygulama.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Başlık -->
+    <header>
+      <h1>Renk Analizörü</h1>
+      <p>Yazdığınız 4 kelime arasından hangilerinin renk ismi olduğunu ve hangisinin renk olmadığını anında bulur.</p>
+    </header>
+
+    <!-- Giriş Formu Kartı -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Analiz Edilecek 4 Kelime</span>
+        <button id="clearBtn" class="clear-btn">Temizle</button>
+      </div>
+
+      <div class="input-grid">
+        <div class="input-group">
+          <label for="word0">1. Kelime</label>
+          <input id="word0" type="text" placeholder="Kelime 1" autocomplete="off">
+        </div>
+        <div class="input-group">
+          <label for="word1">2. Kelime</label>
+          <input id="word1" type="text" placeholder="Kelime 2" autocomplete="off">
+        </div>
+        <div class="input-group">
+          <label for="word2">3. Kelime</label>
+          <input id="word2" type="text" placeholder="Kelime 3" autocomplete="off">
+        </div>
+        <div class="input-group">
+          <label for="word3">4. Kelime</label>
+          <input id="word3" type="text" placeholder="Kelime 4" autocomplete="off">
+        </div>
+      </div>
+
+      <button id="analyzeBtn" class="primary-btn">Analiz Et</button>
+    </div>
+
+    <!-- Sonuç Kartı -->
+    <div id="resultsCard" class="card hidden">
+      <!-- Aykırı (Renk Olmayan) Kelime -->
+      <div class="outlier-box">
+        <span class="outlier-label">Aralarında Renk İsmi Olmayan:</span>
+        <div id="outlierText"></div>
+      </div>
+
+      <!-- Renk Olan Kelimeler -->
+      <div class="colors-section">
+        <span class="colors-label">Renk İsmi Olan Kelimeler:</span>
+        <div id="colorChips" class="chips-container"></div>
+      </div>
+
+      <!-- Açıklama -->
+      <p id="explanationText" class="explanation-text"></p>
+
+      <!-- JSON Çıktısı -->
+      <div style="margin-top: 20px;">
+        <div class="card-header">
+          <span class="card-title">JSON Çıktısı</span>
+          <div style="display: flex; gap: 8px;">
+            <button id="copyJsonBtn" class="secondary-btn">Kopyala</button>
+            <button id="downloadJsonBtn" class="secondary-btn">JSON İndir</button>
+          </div>
+        </div>
+        <pre id="jsonViewer"></pre>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

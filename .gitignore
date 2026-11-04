@@ -1,0 +1,17 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Large binary files (GitHub blocks files > 100 MB)
+.model/
+*.zip
+*.db
+*.bin
+public/assets/
+public/word2vec_sample.json
+bun.lock

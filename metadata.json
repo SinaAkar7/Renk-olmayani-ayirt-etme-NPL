@@ -1,0 +1,6 @@
+{
+  "name": "Renk Avcısı - LLM & Word2Vec Renk Analizörü",
+  "description": "4 kelime arasından renk isimlerini ve renk olmayanı Büyük Dil Modeli (Gemini) ve Türkçe Word2Vec modeli ile bulan, JSON ve HTML olarak açılabilen uygulama.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

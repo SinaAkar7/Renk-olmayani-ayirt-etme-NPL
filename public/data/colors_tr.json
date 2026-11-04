@@ -1,0 +1,85 @@
+{
+  "name": "Türkçe Renkler ve Word2Vec Sözlüğü",
+  "version": "1.0.0",
+  "totalColors": 65,
+  "colors": [
+    { "name": "kırmızı", "hex": "#E53E3E", "rgb": "229, 62, 62", "category": "Ana Renk", "desc": "Al renk, spektrumun en uzun dalga boyuna sahip ana rengi." },
+    { "name": "al", "hex": "#DC2626", "rgb": "220, 38, 38", "category": "Geleneksel", "desc": "Bayrak kırmızısı, parlak kırmızı tonu." },
+    { "name": "mavi", "hex": "#3182CE", "rgb": "49, 130, 206", "category": "Ana Renk", "desc": "Gökyüzü ve denizin rengi, soğuk ana renk." },
+    { "name": "sarı", "hex": "#ECC94B", "rgb": "236, 201, 75", "category": "Ana Renk", "desc": "Güneşin ve altının rengi, sıcak ana renk." },
+    { "name": "yeşil", "hex": "#38A169", "rgb": "56, 161, 105", "category": "Ara Renk", "desc": "Doğanın ve yaprakların rengi, mavi ile sarının karışımı." },
+    { "name": "siyah", "hex": "#1A202C", "rgb": "26, 32, 44", "category": "Nötr Renk", "desc": "Işığın yansımaması durumu, kara renk." },
+    { "name": "kara", "hex": "#0F172A", "rgb": "15, 23, 42", "category": "Geleneksel", "desc": "Koyu siyah, geleneksel Türkçede kuzey ve siyah." },
+    { "name": "beyaz", "hex": "#F7FAFC", "rgb": "247, 250, 252", "category": "Nötr Renk", "desc": "Tüm görünür ışık dalgalarının birleşimi, ak renk." },
+    { "name": "ak", "hex": "#FFFFFF", "rgb": "255, 255, 255", "category": "Geleneksel", "desc": "Duruluk ve saflık simgesi, parlak beyaz." },
+    { "name": "mor", "hex": "#805AD5", "rgb": "128, 90, 213", "category": "Ara Renk", "desc": "Kırmızı ve mavinin karışımı, asaletin rengi." },
+    { "name": "turuncu", "hex": "#DD6B20", "rgb": "221, 107, 32", "category": "Ara Renk", "desc": "Kırmızı ile sarının karışımı, portakal rengi." },
+    { "name": "turkuaz", "hex": "#319795", "rgb": "49, 151, 149", "category": "Geleneksel", "desc": "Türk rengi, camgöbeği ile yeşil arası canlı ton." },
+    { "name": "pembe", "hex": "#ED64A6", "rgb": "237, 100, 166", "category": "Ton", "desc": "Kırmızı ve beyazın karışımından oluşan açık ton." },
+    { "name": "kahverengi", "hex": "#7B341E", "rgb": "123, 52, 30", "category": "Doğal", "desc": "Toprak ve kavrulmuş kahve çekirdeği rengi." },
+    { "name": "gri", "hex": "#718096", "rgb": "113, 128, 150", "category": "Nötr Renk", "desc": "Siyah ve beyazın karışımı, kurşunî ton." },
+    { "name": "lacivert", "hex": "#1E3A8A", "rgb": "30, 58, 138", "category": "Koyu Ton", "desc": "Koyu gece mavisi, derin deniz tonu." },
+    { "name": "bordo", "hex": "#831843", "rgb": "131, 24, 67", "category": "Koyu Ton", "desc": "Koyu şarap kırmızısı tonu." },
+    { "name": "eflatun", "hex": "#9333EA", "rgb": "147, 51, 234", "category": "Pastel", "desc": "Leylak ve açık mor tonu." },
+    { "name": "lila", "hex": "#C084FC", "rgb": "192, 132, 252", "category": "Pastel", "desc": "Leylak çiçeği renginde çok açık mor." },
+    { "name": "bej", "hex": "#E2E8F0", "rgb": "226, 232, 240", "category": "Nötr Renk", "desc": "Kumlu açık sarımsı gri." },
+    { "name": "haki", "hex": "#4D7C0F", "rgb": "77, 124, 15", "category": "Toprak", "desc": "Toprak ve zeytini andıran askeri yeşilimsi ton." },
+    { "name": "kızıl", "hex": "#B91C1C", "rgb": "185, 28, 28", "category": "Sıcak", "desc": "Parlak ateş kırmızısı, bakır tonu." },
+    { "name": "amber", "hex": "#D97706", "rgb": "217, 119, 6", "category": "Sıcak", "desc": "Kehribar sarısı, turuncumsu altın." },
+    { "name": "fuşya", "hex": "#C026D3", "rgb": "192, 38, 211", "category": "Canlı", "desc": "Canlı morumsu pembe, küpe çiçeği rengi." },
+    { "name": "vişneçürüğü", "hex": "#4C0519", "rgb": "76, 5, 25", "category": "Geleneksel", "desc": "Olgun vişne renginde derin koyu kırmızı." },
+    { "name": "yavruağzı", "hex": "#FB7185", "rgb": "251, 113, 133", "category": "Geleneksel", "desc": "Açık pembe ile mercan arası narin ten tonu." },
+    { "name": "camgöbeği", "hex": "#06B6D4", "rgb": "6, 182, 212", "category": "Geleneksel", "desc": "Yeşilimsi açık parlak mavi." },
+    { "name": "somon", "hex": "#FB923C", "rgb": "251, 146, 60", "category": "Pastel", "desc": "Somon balığı eti renginde pembe-turuncu." },
+    { "name": "erguvan", "hex": "#701A75", "rgb": "112, 26, 117", "category": "Geleneksel", "desc": "İstanbul baharının ve Boğaziçi'nin simge leylak-mor rengi." },
+    { "name": "zümrüt", "hex": "#059669", "rgb": "5, 150, 105", "category": "Değerli Taş", "desc": "Değerli zümrüt taşı renginde berrak koyu yeşil." },
+    { "name": "safir", "hex": "#1D4ED8", "rgb": "29, 78, 216", "category": "Değerli Taş", "desc": "Işıltılı berrak koyu gök mavisi." },
+    { "name": "yakut", "hex": "#9F1239", "rgb": "159, 18, 57", "category": "Değerli Taş", "desc": "Derin koyu kırmızı taş rengi." },
+    { "name": "mercan", "hex": "#F43F5E", "rgb": "244, 63, 94", "category": "Deniz", "desc": "Mercan kayalıkları tonunda canlı pembe-kırmızı." },
+    { "name": "hardal", "hex": "#CA8A04", "rgb": "202, 138, 4", "category": "Sıcak", "desc": "Koyu esmer sarı, hardal tohumu tonu." },
+    { "name": "antrasit", "hex": "#334155", "rgb": "51, 65, 85", "category": "Modern", "desc": "Kömür tonunda çok koyu mat kurşunî gri." },
+    { "name": "altın", "hex": "#EAB308", "rgb": "234, 179, 8", "category": "Metalik", "desc": "Parlak ışıltılı altın sarısı." },
+    { "name": "gümüş", "hex": "#CBD5E1", "rgb": "203, 213, 225", "category": "Metalik", "desc": "Açık metalik parlak gri." },
+    { "name": "bronz", "hex": "#92400E", "rgb": "146, 64, 14", "category": "Metalik", "desc": "Kızıl kahveye çalan esmer maden tonu." },
+    { "name": "fildişi", "hex": "#FEF3C7", "rgb": "254, 243, 199", "category": "Pastel", "desc": "Hafif sarımtırak sıcak kırık beyaz." },
+    { "name": "tarçın", "hex": "#9A3412", "rgb": "154, 52, 18", "category": "Baharat", "desc": "Tarçın kabuğu renginde kızıl kahverengi." },
+    { "name": "zeytuni", "hex": "#65A30D", "rgb": "101, 163, 13", "category": "Doğal", "desc": "Ham zeytin yeşili tonu." },
+    { "name": "nane", "hex": "#10B981", "rgb": "16, 185, 129", "category": "Taze", "desc": "Ferah taze nane yaprağı yeşili." },
+    { "name": "şeftali", "hex": "#FDBA74", "rgb": "253, 186, 116", "category": "Meyve", "desc": "Tatlı yumuşak sarımtırak pembe." },
+    { "name": "limon", "hex": "#FACC15", "rgb": "250, 204, 21", "category": "Meyve", "desc": "Açık canlı asitli sarı." },
+    { "name": "indigo", "hex": "#4338CA", "rgb": "67, 56, 202", "category": "Derin", "desc": "Çivit mavisi, mor ile koyu mavi arası ton." },
+    { "name": "çivit", "hex": "#3730A3", "rgb": "55, 48, 163", "category": "Geleneksel", "desc": "Geleneksel Türk çivit boyası mavisi." }
+  ],
+  "sampleSets": [
+    {
+      "title": "Klasik Renkler & Nesne",
+      "words": ["kırmızı", "mavi", "araba", "yeşil"],
+      "expectedNonColor": "araba",
+      "hint": "3 temel renk ve 1 araç ismi"
+    },
+    {
+      "title": "Pastel & Meyve & Eylem",
+      "words": ["mor", "turuncu", "pembe", "koşmak"],
+      "expectedNonColor": "koşmak",
+      "hint": "3 ara renk tonu ve 1 fiil"
+    },
+    {
+      "title": "Geleneksel Türk Renkleri",
+      "words": ["turkuaz", "yavruağzı", "vişneçürüğü", "kitap"],
+      "expectedNonColor": "kitap",
+      "hint": "3 zengin Türkçe renk adı ve 1 basılı eser"
+    },
+    {
+      "title": "Değerli Renkler & Doğa",
+      "words": ["eflatun", "lacivert", "ağaç", "bordo"],
+      "expectedNonColor": "ağaç",
+      "hint": "3 asil renk tonu ve 1 bitki türü"
+    },
+    {
+      "title": "Doğal Tonlar & İçecek",
+      "words": ["haki", "antrasit", "kahve", "bej"],
+      "expectedNonColor": "kahve",
+      "hint": "Dikkat: Kahverengi renk iken, kahve içecektir!"
+    }
+  ]
+}
